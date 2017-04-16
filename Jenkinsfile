@@ -1,11 +1,17 @@
-parallel linux: {
-    node('linux') {
+stage('Test on Linux') {
+    agent {
+        label 'linux'
+    }
+    steps {
         checkout scm
         sh 'python test_runner.py'
     }
-},
-windows: {
-    node('mac') {
+}
+stage('Test on macOS') {
+    agent {
+        label 'mac'
+    }
+    steps {
         checkout scm
         sh 'python test_runner.py'
     }
